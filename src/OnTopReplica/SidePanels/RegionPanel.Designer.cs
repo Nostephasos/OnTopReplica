@@ -25,6 +25,10 @@
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.groupRegions = new System.Windows.Forms.GroupBox();
+            this.num_posy = new System.Windows.Forms.NumericUpDown();
+            this.num_posx = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.checkRelative = new System.Windows.Forms.CheckBox();
             this.textRegionName = new OnTopReplica.FocusedTextBox();
             this.numH = new System.Windows.Forms.NumericUpDown();
@@ -43,6 +47,8 @@
             this.comboRegions = new WindowsFormsAero.ComboBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupRegions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_posy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_posx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY)).BeginInit();
@@ -51,6 +57,10 @@
             // 
             // groupRegions
             // 
+            this.groupRegions.Controls.Add(this.num_posy);
+            this.groupRegions.Controls.Add(this.num_posx);
+            this.groupRegions.Controls.Add(this.label1);
+            this.groupRegions.Controls.Add(this.label2);
             this.groupRegions.Controls.Add(this.checkRelative);
             this.groupRegions.Controls.Add(this.textRegionName);
             this.groupRegions.Controls.Add(this.numH);
@@ -70,10 +80,68 @@
             this.groupRegions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupRegions.Location = new System.Drawing.Point(7, 7);
             this.groupRegions.Name = "groupRegions";
-            this.groupRegions.Size = new System.Drawing.Size(254, 208);
+            this.groupRegions.Size = new System.Drawing.Size(481, 208);
             this.groupRegions.TabIndex = 0;
             this.groupRegions.TabStop = false;
             this.groupRegions.Text = "Regions:";
+            // 
+            // num_posy
+            // 
+            this.num_posy.Enabled = false;
+            this.num_posy.Location = new System.Drawing.Point(248, 113);
+            this.num_posy.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.num_posy.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.num_posy.Name = "num_posy";
+            this.num_posy.Size = new System.Drawing.Size(50, 23);
+            this.num_posy.TabIndex = 15;
+            this.num_posy.ValueChanged += new System.EventHandler(this.PosValueSpinner_value_change);
+            // 
+            // num_posx
+            // 
+            this.num_posx.Enabled = false;
+            this.num_posx.Location = new System.Drawing.Point(248, 83);
+            this.num_posx.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.num_posx.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.num_posx.Name = "num_posx";
+            this.num_posx.Size = new System.Drawing.Size(50, 23);
+            this.num_posx.TabIndex = 13;
+            this.num_posx.ValueChanged += new System.EventHandler(this.PosValueSpinner_value_change);
+            // 
+            // label1
+            // 
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label1.Location = new System.Drawing.Point(191, 117);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 20);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Y";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label2
+            // 
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label2.Location = new System.Drawing.Point(191, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "X";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // checkRelative
             // 
@@ -82,7 +150,7 @@
             this.checkRelative.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkRelative.Location = new System.Drawing.Point(7, 137);
             this.checkRelative.Name = "checkRelative";
-            this.checkRelative.Size = new System.Drawing.Size(240, 21);
+            this.checkRelative.Size = new System.Drawing.Size(467, 21);
             this.checkRelative.TabIndex = 12;
             this.checkRelative.Text = "Relative to border";
             this.checkRelative.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -97,7 +165,7 @@
             this.textRegionName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textRegionName.Location = new System.Drawing.Point(7, 51);
             this.textRegionName.Name = "textRegionName";
-            this.textRegionName.Size = new System.Drawing.Size(242, 23);
+            this.textRegionName.Size = new System.Drawing.Size(469, 23);
             this.textRegionName.TabIndex = 11;
             this.textRegionName.Visible = false;
             this.textRegionName.ConfirmInput += new System.EventHandler(this.Save_confirm);
@@ -107,7 +175,7 @@
             // 
             this.numH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numH.Enabled = false;
-            this.numH.Location = new System.Drawing.Point(197, 107);
+            this.numH.Location = new System.Drawing.Point(134, 113);
             this.numH.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -127,7 +195,7 @@
             // 
             this.numW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numW.Enabled = false;
-            this.numW.Location = new System.Drawing.Point(197, 77);
+            this.numW.Location = new System.Drawing.Point(134, 83);
             this.numW.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -146,7 +214,7 @@
             // numY
             // 
             this.numY.Enabled = false;
-            this.numY.Location = new System.Drawing.Point(64, 107);
+            this.numY.Location = new System.Drawing.Point(30, 113);
             this.numY.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -165,7 +233,7 @@
             // numX
             // 
             this.numX.Enabled = false;
-            this.numX.Location = new System.Drawing.Point(64, 77);
+            this.numX.Location = new System.Drawing.Point(30, 83);
             this.numX.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -186,7 +254,7 @@
             this.buttonDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDone.Image = global::OnTopReplica.Properties.Resources.xiao_ok;
             this.buttonDone.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDone.Location = new System.Drawing.Point(166, 174);
+            this.buttonDone.Location = new System.Drawing.Point(393, 174);
             this.buttonDone.Name = "buttonDone";
             this.buttonDone.Size = new System.Drawing.Size(82, 27);
             this.buttonDone.TabIndex = 9;
@@ -198,7 +266,7 @@
             // buttonReset
             // 
             this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReset.Location = new System.Drawing.Point(77, 174);
+            this.buttonReset.Location = new System.Drawing.Point(304, 174);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(82, 27);
             this.buttonReset.TabIndex = 8;
@@ -210,7 +278,7 @@
             // 
             this.labelHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelHeight.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labelHeight.Location = new System.Drawing.Point(121, 110);
+            this.labelHeight.Location = new System.Drawing.Point(58, 116);
             this.labelHeight.Name = "labelHeight";
             this.labelHeight.Size = new System.Drawing.Size(70, 21);
             this.labelHeight.TabIndex = 9;
@@ -221,7 +289,7 @@
             // 
             this.labelWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelWidth.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labelWidth.Location = new System.Drawing.Point(125, 80);
+            this.labelWidth.Location = new System.Drawing.Point(62, 86);
             this.labelWidth.Name = "labelWidth";
             this.labelWidth.Size = new System.Drawing.Size(66, 21);
             this.labelWidth.TabIndex = 8;
@@ -231,7 +299,7 @@
             // labelY
             // 
             this.labelY.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labelY.Location = new System.Drawing.Point(7, 111);
+            this.labelY.Location = new System.Drawing.Point(-27, 117);
             this.labelY.Name = "labelY";
             this.labelY.Size = new System.Drawing.Size(50, 20);
             this.labelY.TabIndex = 5;
@@ -241,7 +309,7 @@
             // labelX
             // 
             this.labelX.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labelX.Location = new System.Drawing.Point(7, 81);
+            this.labelX.Location = new System.Drawing.Point(-27, 87);
             this.labelX.Name = "labelX";
             this.labelX.Size = new System.Drawing.Size(50, 20);
             this.labelX.TabIndex = 4;
@@ -262,7 +330,7 @@
             this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelete.Enabled = false;
             this.buttonDelete.Image = global::OnTopReplica.Properties.Resources.xiao_delete;
-            this.buttonDelete.Location = new System.Drawing.Point(223, 21);
+            this.buttonDelete.Location = new System.Drawing.Point(450, 21);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(27, 25);
             this.buttonDelete.TabIndex = 3;
@@ -274,7 +342,7 @@
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.Enabled = false;
             this.buttonSave.Image = global::OnTopReplica.Properties.Resources.xiao_add;
-            this.buttonSave.Location = new System.Drawing.Point(196, 21);
+            this.buttonSave.Location = new System.Drawing.Point(423, 21);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(27, 25);
             this.buttonSave.TabIndex = 1;
@@ -291,7 +359,7 @@
             this.comboRegions.FormattingEnabled = true;
             this.comboRegions.Location = new System.Drawing.Point(7, 22);
             this.comboRegions.Name = "comboRegions";
-            this.comboRegions.Size = new System.Drawing.Size(186, 23);
+            this.comboRegions.Size = new System.Drawing.Size(413, 23);
             this.comboRegions.TabIndex = 0;
             this.comboRegions.SelectedIndexChanged += new System.EventHandler(this.RegionCombo_index_change);
             // 
@@ -300,12 +368,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupRegions);
-            this.MinimumSize = new System.Drawing.Size(268, 213);
+            this.MinimumSize = new System.Drawing.Size(495, 222);
             this.Name = "RegionPanel";
             this.Padding = new System.Windows.Forms.Padding(7);
-            this.Size = new System.Drawing.Size(268, 222);
+            this.Size = new System.Drawing.Size(495, 222);
             this.groupRegions.ResumeLayout(false);
             this.groupRegions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_posy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_posx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY)).EndInit();
@@ -334,5 +404,9 @@
         private FocusedTextBox textRegionName;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.CheckBox checkRelative;
-	}
+        private System.Windows.Forms.NumericUpDown num_posy;
+        private System.Windows.Forms.NumericUpDown num_posx;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+    }
 }

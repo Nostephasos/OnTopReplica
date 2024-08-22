@@ -18,7 +18,12 @@ namespace OnTopReplica {
             set;
         }
 
-		public string Name {
+        public Point Position {
+            get;
+            set;
+        }
+
+        public string Name {
 			get;
 			set;
 		}

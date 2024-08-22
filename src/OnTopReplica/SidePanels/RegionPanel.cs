@@ -155,6 +155,11 @@ namespace OnTopReplica.SidePanels {
 			OnRegionSet(region);
 		}
 
+        public void SetPosition(Point pos) {
+
+            ParentMainForm.Location = pos;
+        }
+
         /// <summary>
         /// Resets the selected region and disables the num spinners.
         /// </summary>
@@ -294,6 +299,10 @@ namespace OnTopReplica.SidePanels {
                 }
 
                 SetRegion(region.Region);
+
+                // ANPASSUNG MI 2024-08-22: Position change
+                SetPosition(region.Position);
+
             }
         }
 
@@ -315,6 +324,12 @@ namespace OnTopReplica.SidePanels {
 
         #endregion
 
-	}
+        private void PosValueSpinner_value_change(object sender, EventArgs e) {
+
+            Point lpt_Position = new Point(Convert.ToInt32(num_posx.Value), Convert.ToInt32(num_posy.Value));
+            SetPosition(lpt_Position);
+
+        }
+    }
 
 }
