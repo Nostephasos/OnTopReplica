@@ -62,6 +62,9 @@ namespace OnTopReplica.SidePanels {
                 numH.Value = r.Height;
             }
 
+            num_posx.Value = region.Bounds.Location.X;
+            num_posy.Value = region.Bounds.Location.Y;
+
             UpdateRegionLabels();
         }
 
@@ -146,7 +149,7 @@ namespace OnTopReplica.SidePanels {
 
                 UpdateRegionControls(region);
 
-				numX.Enabled = numY.Enabled = numW.Enabled = numH.Enabled = true;
+				numX.Enabled = numY.Enabled = numW.Enabled = numH.Enabled = num_posx.Enabled = num_posy.Enabled = true;
 			}
 			finally {
 				_ignoreValueChanges = false;
@@ -168,7 +171,7 @@ namespace OnTopReplica.SidePanels {
 				_ignoreValueChanges = true;
 
 				numX.Value = numY.Value = numW.Value = numH.Value = 0;
-				numX.Enabled = numY.Enabled = numW.Enabled = numH.Enabled = false;
+				numX.Enabled = numY.Enabled = numW.Enabled = numH.Enabled = num_posx.Enabled = num_posy.Enabled = false;
                 checkRelative.Checked = false;
                 UpdateRegionLabels();
 
@@ -207,6 +210,7 @@ namespace OnTopReplica.SidePanels {
         /// <param name="isRelative">Whether the region is relative to the border.</param>
         private void StoreCurrentRegion(string regionName) {
             StoredRegion storedRegion = new StoredRegion(this.ConstructCurrentRegion(), regionName);
+            storedRegion.Position = ParentMainForm.Location;
 
             int index = comboRegions.Items.Add(storedRegion);
             comboRegions.SelectedIndex = index;
